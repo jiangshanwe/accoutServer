@@ -5,8 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author Jiang.Shanwe
- * 2015-11-5 下午11:09:51
+ * @author Jiang.Shanwe 2015-11-5 下午11:09:51
  *
  */
 public class Record {
@@ -125,4 +124,34 @@ public class Record {
         return desc;
     }
 
+    public Record(int id, double count, String comments, int status) {
+        super();
+        this.id = id;
+        this.count = count;
+        this.comments = comments;
+        this.status = status;
+    }
+
+    public Record(int id, int ownerId, double count, String comments, Date consumeDate, Date createdTime,
+            Date updatedTime, int status, int syncStatus) {
+        super();
+        this.id = id;
+        this.ownerId = ownerId;
+        this.count = count;
+        this.comments = comments;
+        this.consumeDate = consumeDate;
+        this.createdTime = createdTime;
+        this.updatedTime = updatedTime;
+        this.status = status;
+        this.syncStatus = syncStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Record [id=" + id + ", ownerId=" + ownerId + ", count=" + count + ", comments=" + comments
+                + ", consumeDate=" + consumeDate + ", createdTime=" + createdTime + ", updatedTime=" + updatedTime
+                + ", status=" + status + ", syncStatus=" + syncStatus + ", tags=" + tags + ", tagIds=" + tagIds + "]";
+    }
+
+    
 }

@@ -4,5 +4,8 @@
 
 	<mappers>
 		<mapper resource="sqlmap/userMapper.xml" />
+		<mapper resource="sqlmap/recordMapper.xml" />
+		<mapper resource="sqlmap/tagMapper.xml" />
+		<mapper resource="sqlmap/recordTagAssMapper.xml" />
 	</mappers>
 </configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.shanwe.mapper.TagMapper">
+
+	<insert id="insertTag" parameterType="com.jiang.shanwe.model.Tag"
+		useGeneratedKeys="false">
+		insert into
+		Tag(id,name,createrId,createdTime,updatedTime,icon,status,syncStatus)
+		values(#{id},
+		#{name},#{createrId},#{createdTime.fastTime},#{updatedTime.fastTime},#{icon},#{status},1)
+	</insert>
+
+	<delete id="deleteAllTag">
+		delete from tag
+	</delete>
+
+
+</mapper>

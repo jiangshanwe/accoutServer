@@ -1,13 +1,14 @@
-package com.jiang.shanwe.dao;
+package com.jiang.shanwe.dao.mybatisImpl;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import com.jiang.shanwe.dao.UserDao;
 import com.jiang.shanwe.model.User;
 
-public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
+public class UserDaoMybatisImpl extends SqlSessionDaoSupport implements UserDao {
 
     @Override
     public User getUserById(int id) throws Exception {

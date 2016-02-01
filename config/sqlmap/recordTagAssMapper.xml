@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.shanwe.mapper.RecordMapper">
+
+	<insert id="insertRecordTagAss" parameterType="com.jiang.shanwe.model.RecordTagAss"
+		useGeneratedKeys="false">
+		insert into Record_Tag(id,
+		recordId,tagId,createdTime,updatedTime,status,syncStatus)
+		values(#{id},
+		#{recordId},#{tagId},#{createdTime.fastTime},#{updatedTime.fastTime},#{status},1)
+	</insert>
+
+	<delete id="deleteAllRecordTagAsses">
+		delete from Record_Tag
+	</delete>
+
+
+</mapper>
