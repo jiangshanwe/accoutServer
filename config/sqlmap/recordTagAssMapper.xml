@@ -14,5 +14,21 @@
 		delete from Record_Tag
 	</delete>
 
+	<select id="findAllRecordTagAsses" resultType="List" resultMap='recordTagAssMap'
+		parameterType="int">
+		select * from record_tag
+	</select>
+
+	<resultMap type='com.jiang.shanwe.model.RecordTagAss' id='recordTagAssMap'>
+		<id property='id' column='id' />
+		<result property='recordId' column='recordId' />
+		<result property='tagId' column='tagId' />
+		<result property='createdTime' column='createdTime' jdbcType="BIGINT"
+			javaType="Date" />
+		<result property='updatedTime' column='updatedTime' jdbcType="BIGINT"
+			javaType="Date" />
+		<result property='status' column='status' />
+		<result property='syncStatus' column='syncStatus' />
+	</resultMap>
 
 </mapper>

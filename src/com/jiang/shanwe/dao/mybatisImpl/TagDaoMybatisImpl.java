@@ -1,11 +1,13 @@
 package com.jiang.shanwe.dao.mybatisImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import com.jiang.shanwe.dao.TagDao;
+import com.jiang.shanwe.model.Record;
 import com.jiang.shanwe.model.Tag;
 
 public class TagDaoMybatisImpl extends SqlSessionDaoSupport implements TagDao {
@@ -28,6 +30,18 @@ public class TagDaoMybatisImpl extends SqlSessionDaoSupport implements TagDao {
     public void deleteAllTag() {
         SqlSession sqlSession = this.getSqlSession();
         sqlSession.delete("deleteAllTag");
+    }
+
+    @Override
+    public List<Tag> findAllTags(long userId) {
+        List<Tag> tags = new ArrayList<>();
+        try {
+            SqlSession sqlSession = this.getSqlSession();
+            tags = sqlSession.selectList("findAllTags");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tags;
     }
 
 }

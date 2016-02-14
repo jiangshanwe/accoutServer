@@ -7,13 +7,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.jiang.shanwe.dao.RecordDao;
 import com.jiang.shanwe.dao.RecordTagAssDao;
 import com.jiang.shanwe.dao.TagDao;
@@ -29,13 +37,16 @@ public class RecordController {
 
     @Autowired
     private RecordDao recordDao;
-
     @Autowired
     private TagDao tagDao;
-
     @Autowired
     private RecordTagAssDao recordTagAssDao;
 
+    /**
+     * 本地数据备份到服务器
+     * @param dataJsonObject
+     * @return
+     */
     @RequestMapping(value = "/backupData", method = RequestMethod.POST)
     @ResponseBody
     public String backupData(@RequestBody String dataJsonObject) {
@@ -108,4 +119,23 @@ public class RecordController {
         }
         return resultObject.toString();
     }
+
+    /**
+     * 同步数据到本地
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/syncData", method = RequestMethod.GET)
+    @ResponseBody
+    public String syncDate(@RequestParam int userId) {
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss.SSS").create();
+        org.json.JSONObject resultJsonObject = new org.json.JSONObject();
+        resultJsonObject.put("records", new org.json.JSONArray(gson.toJson(recordDao.findAllRecords(userId))));
+        resultJsonObject.put("tags", new org.json.JSONArray(gson.toJson(tagDao.findAllTags(userId))));
+        resultJsonObject.put("recordTagAsses",
+                new org.json.JSONArray(gson.toJson(recordTagAssDao.findAllRecordTagAsses())));
+        System.out.println(resultJsonObject.toString());
+        return resultJsonObject.toString();
+    }
+
 }

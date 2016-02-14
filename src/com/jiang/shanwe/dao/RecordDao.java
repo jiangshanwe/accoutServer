@@ -8,7 +8,7 @@ public interface RecordDao {
 
     public int uploadRecord(List<Record> records);
 
-    public List<Record> syncRecord(long userId);
+    public List<Record> findAllRecords(long userId);
 
     public void deleteAllRecords();
 }

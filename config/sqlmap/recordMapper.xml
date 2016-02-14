@@ -14,5 +14,25 @@
 		delete from record
 	</delete>
 
+	<select id="findAllRecords" resultType="List" resultMap='recordMap'
+		parameterType="int">
+		select * from record
+		where ownerId=#{userId}
+	</select>
+
+	<resultMap type='com.jiang.shanwe.model.Record' id='recordMap'>
+		<id property='id' column='id' />
+		<result property='ownerId' column='ownerId' />
+		<result property='count' column='count' />
+		<result property='comments' column='comments' />
+		<result property='consumeDate' column='consumeDate' jdbcType="BIGINT"
+			javaType="Date" />
+		<result property='createdTime' column='createdDate' jdbcType="BIGINT"
+			javaType="Date" />
+		<result property='updatedTime' column='updatedDate' jdbcType="BIGINT"
+			javaType="Date" />
+		<result property='status' column='status' />
+		<result property='syncStatus' column='syncStatus' />
+	</resultMap>
 
 </mapper>

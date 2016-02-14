@@ -18,21 +18,32 @@ public class RecordDaoMybatisImpl extends SqlSessionDaoSupport implements Record
 
     @Override
     public int uploadRecord(List<Record> records) {
+        Record record = null;
         try {
             for (int i = 0; i < records.size(); i++) {
+                record = records.get(i);
                 SqlSession sqlSession = this.getSqlSession();
                 sqlSession.insert("insertRecord", records.get(i));
             }
             return 1; // 上传成功
         } catch (Exception e) {
+            System.out.println(record.getId());
+            System.out.println(record.getComments());
             e.printStackTrace();
             return 0; // 上传失败
         }
     }
 
     @Override
-    public List<Record> syncRecord(long userId) {
-        return null;
+    public List<Record> findAllRecords(long userId) {
+        List<Record> records = new ArrayList<>();
+        try {
+            SqlSession sqlSession = this.getSqlSession();
+            records = sqlSession.selectList("findAllRecords", userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return records;
     }
 
     @Test

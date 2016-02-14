@@ -2,6 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+	<typeHandlers>
+		<typeHandler javaType="java.util.Date" jdbcType="BIGINT"
+			handler="com.jiang.shanwe.util.BigIntToDateTypeHandler" />
+	</typeHandlers>
+
 	<mappers>
 		<mapper resource="sqlmap/userMapper.xml" />
 		<mapper resource="sqlmap/recordMapper.xml" />

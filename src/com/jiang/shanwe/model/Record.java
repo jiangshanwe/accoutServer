@@ -115,15 +115,6 @@ public class Record {
         this.syncStatus = syncStatus;
     }
 
-    public String getDesc() {
-        String desc = "";
-        desc += this.comments;
-        for (int i = 0; i < tags.size(); i++) {
-            desc += tags.get(i).getName();
-        }
-        return desc;
-    }
-
     public Record(int id, double count, String comments, int status) {
         super();
         this.id = id;
@@ -153,5 +144,4 @@ public class Record {
                 + ", status=" + status + ", syncStatus=" + syncStatus + ", tags=" + tags + ", tagIds=" + tagIds + "]";
     }
 
-    
 }
